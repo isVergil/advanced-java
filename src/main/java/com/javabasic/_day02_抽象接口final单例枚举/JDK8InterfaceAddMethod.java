@@ -1,6 +1,8 @@
 package com.javabasic._day02_抽象接口final单例枚举;
 
 
+import javax.lang.model.element.AnnotationMirror;
+
 /**
  * @ClassName JDK8InterfaceAddMethod
  * @Description TODO
@@ -35,6 +37,9 @@ public class JDK8InterfaceAddMethod {
         Basketball basketball = new Basketball();
         basketball.run();
         Test.eat();
+        System.out.println();
+        Cat cat = new Cat();
+        cat.run();
     }
 }
 
@@ -44,7 +49,7 @@ class Basketball implements Test {
 }
 
 interface Test {
-    //1、默认方法 属于对象的方法 默认会加 public 修饰 只能用接口实现类的对象来调用
+    //1、默认方法 属于对象的方法 要加default 只能用接口实现类的对象来调用
     default void run() {
         System.out.println("default run");
     }
@@ -58,6 +63,30 @@ interface Test {
     //private void go() {
 
     //}
+}
+
+class Cat extends Animal implements Interface1, Interface2 {
+
+    @Override
+    public void run() {
+
+    }
+}
+
+class Animal {
+
+}
+
+interface Interface1 {
+    default void run() {
+        System.out.println("Interface1 - run");
+    }
+}
+
+interface Interface2 {
+    default void run() {
+        System.out.println("Interface2 - run");
+    }
 }
 
 
