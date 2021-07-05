@@ -1,5 +1,10 @@
 package com.javabasic._day04_常用API正则表达式泛型Collection集合API;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
+
 /**
  * @ClassName CollectionDemo
  * @Description TODO
@@ -24,9 +29,9 @@ package com.javabasic._day04_常用API正则表达式泛型Collection集合API;
  * 学习Collection集合的功能，那么一切集合都可以用这些功能！！
  * <p>
  * Collection集合的体系:
- * -----------------------Collection<E>(接口)
- * ---------------------/                       \
- * ----------Set<E>(接口)                       List<E>(接口)
+ * -------------------------Collection<E>(接口)
+ * ---------------------/                        \
+ * ----------Set<E>(接口)                           List<E>(接口)
  * ---------/               \                    /                \
  * HashSet<E>(实现类)  TreeSet<>(实现类)    ArrayList<E>(实现类)  LinekdList<>(实现类)
  * -----/
@@ -44,4 +49,32 @@ package com.javabasic._day04_常用API正则表达式泛型Collection集合API;
  * Collection是集合的祖宗类，Collection集合的功能是一切集合都可以直接使用的。
  **/
 public class CollectionDemo {
+    public static void main(String[] args) {
+        Collection<String> set = new HashSet<>();
+        System.out.println(set.add("123"));
+        System.out.println(set.add("123"));
+        System.out.println(set.add("1234"));
+        System.out.println(set.add("1235"));
+        System.out.println(set);
+
+        //集合转成数组
+        Object[] arr1 = set.toArray();
+        System.out.println(Arrays.toString(arr1));
+        //转换成确定类型的
+        String[] arr2 = set.toArray(new String[set.size()]);
+        //String[] arrs1 = set.toArray(String[]::new);
+        System.out.println(arr2.toString());
+
+        Collection<String> c1 = new ArrayList<>();
+        c1.add("李小璐");
+        c1.add("马蓉");
+
+        Collection<String> c2 = new ArrayList<>();
+        c2.add("白百合");
+
+        c1.addAll(c2); // 把c2集合的元素全部倒入到c1
+        System.out.println(c1);
+
+
+    }
 }
