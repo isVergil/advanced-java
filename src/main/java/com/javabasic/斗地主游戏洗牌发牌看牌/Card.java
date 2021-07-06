@@ -10,13 +10,16 @@ package com.javabasic.斗地主游戏洗牌发牌看牌;
 public class Card {
     private String number;
     private String color;
+    //存储牌的索引
+    private int index;
 
     public Card() {
     }
 
-    public Card(String number, String color) {
+    public Card(String number, String color, int index) {
         this.number = number;
         this.color = color;
+        this.index = index;
     }
 
     public String getNumber() {
@@ -35,8 +38,16 @@ public class Card {
         this.color = color;
     }
 
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
     @Override
     public String toString() {
-        return number+color;
+        return number + color;
     }
 }
