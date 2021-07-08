@@ -2,6 +2,11 @@ package com.test;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * @ClassName Test1
  * @Description TODO
@@ -31,5 +36,16 @@ public class Test1 {
 //        };
 //        Thread t = new Thread(run);
 //        t.start();
+
+        HashMap<String, String> maps = new HashMap<>();
+        maps.put("1", "1");
+        maps.put("2", "1");
+        maps.put("3", "1");
+        //Object dad = maps.get("1");
+        String dad1 = maps.get("1");
+        //System.out.println(dad.hashCode());
+        System.out.println(dad1.hashCode());
+        dad1 = "fsfgsg";
+        System.out.println(maps);
     }
 }
