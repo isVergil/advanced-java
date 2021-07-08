@@ -30,6 +30,69 @@ package com.javabasic._day07_异常线程的创建方式线程安全线程同步
  * 多线程可以解决很多业务模型。
  * 大型高并发技术的核心技术。
  * 设计到多线程的开发可能都比较难理解。
+ * ================
+ * ================
+ * 多线程是很有用的，我们在进程中创建线程的方式有三种:
+ * （1）直接定义一个类继承线程类Thread，重写run()方法，创建线程对象
+ * 调用线程对象的start()方法启动线程。
+ * （2）定义一个线程任务类实现Runnable接口，重写run()方法，创建线程任务对象，把
+ * 线程任务对象包装成线程对象， 调用线程对象的start()方法启动线程。
+ * （3）实现Callable接口（拓展）。
+ * a.继承Thread类的方式
+ * -- 1.定义一个线程类继承Thread类。
+ * -- 2.重写run()方法
+ * -- 3.创建一个新的线程对象。
+ * -- 4.调用线程对象的start()方法启动线程。
+ * 继承Thread类的优缺点：
+ * 优点：编码简单。
+ * 缺点：线程类已经继承了Thread类无法继承其他类了，功能不能通过继承拓展（单继承的局限性）
+ * 小结：
+ * 线程类是继承了Thread的类。
+ * 启动线程必须调用start()方法。
+ * 多线程是并发抢占CPU执行，所以在执行的过程中会出现并发随机性。
+ * =======
+ * 1.线程的启动必须调用start()方法。否则当成普通类处理。
+ * -- 如果线程直接调用run()方法，相当于变成了普通类的执行，此时将只有主线程在执行他们！
+ * -- start()方法底层其实是给CPU注册当前线程，并且触发run()方法执行
+ * 2.建议线程先创建子线程，主线程的任务放在之后。否则主线程永远是先执行完！
+ * =====
+ * =====
+ * public static void sleep(long time): 让当前线程休眠多少毫秒再继续执行。
  **/
 public class ThreadDemo {
+    //进程
+    //main主线程
+    public static void main(String[] args) {
+        Thread t1 = new MyThread("t1");
+        //t1.setName("t1");
+        t1.start();
+        Thread t2 = new MyThread("t2");
+        //t2.setName("t2");
+        t2.start();
+        for (int i = 0; i < 5; i++) {
+            System.out.println(Thread.currentThread().getName() + "\t:" + i);
+        }
+
+    }
+}
+
+//线程类
+class MyThread extends Thread {
+    public MyThread(String name) {
+        // 调用父类的有参数构造器初始化当前线程对象的名称！
+        super(name);
+    }
+
+    @Override
+    public void run() {
+        //线程的执行方法
+        for (int i = 0; i < 5; i++) {
+            System.out.println(currentThread().getName() + "\t:" + i);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
