@@ -58,23 +58,24 @@ public class ReflectMethodDemo {
         // a.先获取class类对象
         Class c = Student.class;
         // b.定位它的某个方法
-        Method privateMethodArgs = c.getDeclaredMethod("privateMethod");
+        Method privateMethod = c.getDeclaredMethod("privateMethod");
+        privateMethod.setAccessible(true);
         // c.触发方法执行!
         Student student = new Student("bill", 18);
-        Object rs = privateMethodArgs.invoke("Test"); // 触发jinMao对象的run()方法执行！
+        Object rs = privateMethod.invoke(student); // 触发对象执行方法！
         System.out.println(rs);// 如果方法没有返回值，结果是null
 
         /**
          * 参数一：方法名称
          * 参数二：方法的参数个数和类型(可变参数！)
          */
-        Method eat = c.getDeclaredMethod("eat", String.class);
-        eat.setAccessible(true); // 暴力反射！
+        Method privateMethodArgs = c.getDeclaredMethod("privateMethodArgs", String.class);
+        privateMethodArgs.setAccessible(true); // 暴力反射！
         /**
          * 参数一：被触发方法所在的对象
          * 参数二：方法需要的入参值
          */
-        Object rs1 = eat.invoke(student, "肉");
+        Object rs1 = privateMethodArgs.invoke(student, "有参数");
         System.out.println(rs1);// 如果方法没有返回值，结果是null
     }
 }
