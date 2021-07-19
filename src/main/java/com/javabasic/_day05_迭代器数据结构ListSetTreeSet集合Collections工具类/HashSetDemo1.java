@@ -47,7 +47,7 @@ public class HashSetDemo1 {
     }
 }
 
-class Apple implements Comparable<Apple> {
+class Apple implements Comparable<Apple>, Cloneable {
     private String name;
     private int age;
 
@@ -105,5 +105,10 @@ class Apple implements Comparable<Apple> {
             return -1;
         }
         return 0;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

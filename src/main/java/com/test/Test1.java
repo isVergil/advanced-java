@@ -47,5 +47,47 @@ public class Test1 {
         System.out.println(dad1.hashCode());
         dad1 = "fsfgsg";
         System.out.println(maps);
+
+        String test1 = new String("aaa");
+        String test2 = "aaa";
+        System.out.println(test1 == test2);
+        test1 = test1.intern();
+        System.out.println(test2 == test1);
+
+        float fff = 1.1f;
+
+        Cup aCup = new Cup();
+        BrokenCup aBrokenCup = new BrokenCup();
+
+        String s ="Ea";
+
+        String d ="FB";
+
+        System.out.println(s.hashCode());
+
+        System.out.println(d.hashCode());
+
+    }
+}
+
+class Cup {
+    public void addWater(int w) {
+        this.water = this.water + w;
+    }
+
+    public void drinkWater(int w) {
+        this.water = this.water - w;
+    }
+
+    private int water = 0;
+}
+
+class BrokenCup extends Cup {
+    public void addWater(int w) {
+        System.out.println("shit, broken cup");
+    }
+
+    public void drinkWater(int w) {
+        System.out.println("om...num..., no water inside");
     }
 }
