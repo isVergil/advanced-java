@@ -59,13 +59,14 @@ public class Test1 {
         Cup aCup = new Cup();
         BrokenCup aBrokenCup = new BrokenCup();
 
-        String s ="Ea";
+        String s = "Ea";
 
-        String d ="FB";
+        String d = "FB";
 
         System.out.println(s.hashCode());
 
         System.out.println(d.hashCode());
+
 
     }
 }
