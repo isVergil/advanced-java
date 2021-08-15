@@ -11,7 +11,7 @@ package com.javabasic._day08_线程状态volatile关键字原子性并发包死�
 import java.util.concurrent.CyclicBarrier;
 
 /***
- *    目标： CyclicBarrier
+ *    目标：
  *
  *     CyclicBarrier作用：
  *         某个线程任务必须等待其他线程执行完毕以后才能最终触发自己执行。

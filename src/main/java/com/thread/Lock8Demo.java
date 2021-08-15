@@ -2,6 +2,8 @@ package com.thread;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.ArrayList;
+
 /**
  * @ClassName Lock8Demo
  * @Description TODO
@@ -32,20 +34,26 @@ public class Lock8Demo {
 //        }).start();
 
         //锁的两个不同的对象 没有互斥，没有关系
-        Number n3 = new Number();
-        Number n4 = new Number();
-        new Thread(() -> {
-            log.debug("Thread3");
-            try {
-                n3.a();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }).start();
-        new Thread(() -> {
-            log.debug("Thread4");
-            n4.b();
-        }).start();
+//        Number n3 = new Number();
+//        Number n4 = new Number();
+//        new Thread(() -> {
+//            log.debug("Thread3");
+//            try {
+//                n3.a();
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }).start();
+//        new Thread(() -> {
+//            log.debug("Thread4");
+//            n4.b();
+//        }).start();
+        ThreadSafeSubClass test = new ThreadSafeSubClass();
+        for (int i = 0; i < 2; i++) {
+            new Thread(() -> {
+                test.method1(200);
+            }).start();
+        }
     }
 }
 
@@ -99,5 +107,32 @@ class Number2 {
 
     //一把锁锁住类对象，类对象只有一个
 
+}
+
+class ThreadSafe {
+    public final void method1(int loopNumber) {
+        ArrayList<String> list = new ArrayList<>();
+        for (int i = 0; i < loopNumber; i++) {
+            method2(list);
+            method3(list);
+        }
+    }
+
+    private void method2(ArrayList<String> list) {
+        list.add("1");
+    }
+
+    public void method3(ArrayList<String> list) {
+        list.remove(0);
+    }
+}
+
+class ThreadSafeSubClass extends ThreadSafe {
+    @Override
+    public void method3(ArrayList<String> list) {
+        new Thread(() -> {
+            list.remove(0);
+        }).start();
+    }
 }
 
