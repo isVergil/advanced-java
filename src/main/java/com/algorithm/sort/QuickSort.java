@@ -14,8 +14,27 @@ public class QuickSort {
         int[] test = new int[]{123, 435, 678, 2343, 6547, 65, 65, 867, 7, 3, 3, 525, 6532, 8, 585, 67};
         //quickSort(test, 0, test.length - 1);
 
-        quickSort2(test, 0, test.length - 1);
+        //quickSort2(test, 0, test.length - 1);
+        //quickSort3(test, 0, test.length - 1);
+
+        quickSort4(test, 0, test.length - 1);
         System.out.println(Arrays.toString(test));
+
+        Node head = new Node(1);
+        Node node1 = new Node(123);
+        Node node2 = new Node(54);
+        Node node3 = new Node(8);
+        Node node4 = new Node(56);
+        Node node5 = new Node(9);
+        head.next = node1;
+        node1.next = node2;
+        node2.next = node3;
+        node3.next = node4;
+        node4.next = node5;
+        node5.next = null;
+        System.out.println(head);
+        quickSort4(head);
+        System.out.println(head);
     }
 
     //先取 中间数 作为游标 left 和 right 作为其实和终点 开始遍历
@@ -84,7 +103,7 @@ public class QuickSort {
     }
 
 
-    private void quickSort3(int[] arr, int l, int r) {
+    private static void quickSort3(int[] arr, int l, int r) {
         // 子数组长度为 1 时终止递归
         if (l >= r) return;
         // 哨兵划分操作（以 arr[l] 作为基准数）
@@ -99,9 +118,93 @@ public class QuickSort {
         quickSort3(arr, l, i - 1);
         quickSort3(arr, i + 1, r);
     }
-    private void swap(int[] arr, int i, int j) {
+
+    private static void swap(int[] arr, int i, int j) {
         int tmp = arr[i];
         arr[i] = arr[j];
         arr[j] = tmp;
+    }
+
+    //一种更加普遍适用的算法 适合数组和链表
+    //pivot 取数组第一个，i,j为第二个元素下标
+    //1、若 nums[pivot] <= nums[j]  则 j++
+    //2、若 nums[pivot] > nums[j]  则交换 i，j，然后 i++,j++
+    //最后交换 nums[pivot] 和 nums[i-1]
+    //循环直到 j 到达尽头
+    private static void quickSort4(int[] nums, int left, int right) {
+        if (right < left) {
+            return;
+        }
+        int pivot = left;
+        int i = left + 1;
+        int j = left + 1;
+        while (j <= right) {
+            if (nums[pivot] > nums[j]) {
+                swap(nums, i, j);
+                i++;
+            }
+            j++;
+        }
+        swap(nums, pivot, i - 1);
+        quickSort4(nums, left, i - 2);
+        quickSort4(nums, i, right);
+    }
+
+    //快排链表 方法同上
+    private static void quickSort4(Node head) {
+        Node tail = head;
+        while (tail.next != null) {
+            tail = tail.next;
+        }
+        subSort(head, tail);
+    }
+
+    private static void subSort(Node low, Node high) {
+        if (low == null || low.next == null || low == high) {
+            return;
+        }
+        int privot = low.val;
+        Node i = low.next;
+        Node i_pre = low;
+        Node j = low.next;
+        while (j != high.next) {
+            if (j.val < privot) {
+                swapNode(i, j);
+                i_pre = i;
+                i = i.next;
+            }
+            j = j.next;
+        }
+        swapNode(low, i_pre);
+        subSort(low, i_pre);
+        subSort(i, high);
+
+    }
+
+    private static void swapNode(Node i, Node j) {
+        int temp = i.val;
+        i.val = j.val;
+        j.val = temp;
+    }
+
+}
+
+class Node {
+    int val;
+    Node next = null;
+
+    Node(int val) {
+        this.val = val;
+    }
+
+    @Override
+    public String toString() {
+        Node cur = this;
+        String out = "";
+        while (cur != null) {
+            out += ("=>" + cur.val);
+            cur = cur.next;
+        }
+        return out;
     }
 }
