@@ -8,6 +8,8 @@ import java.util.Arrays;
  * @Author bill
  * @Date 2021/7/11 10:41
  * @Version 1.0
+ * 快速排序为什么要从右边开始
+ * https://blog.csdn.net/luzhensmart/article/details/112505063?utm_term=%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BB%8E%E5%8F%B3%E8%BE%B9%E5%BC%80%E5%A7%8B&utm_medium=distribute.pc_aggpage_search_result.none-task-blog-2~all~sobaiduweb~default-2-112505063&spm=3001.4430
  **/
 public class QuickSort {
     public static void main(String[] args) {
@@ -181,7 +183,7 @@ public class QuickSort {
 
     }
 
-    private static void swapNode(Node i, Node j) {
+    public static void swapNode(Node i, Node j) {
         int temp = i.val;
         i.val = j.val;
         j.val = temp;
