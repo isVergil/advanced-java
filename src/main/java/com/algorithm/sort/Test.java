@@ -12,41 +12,131 @@ import java.util.Arrays;
 public class Test {
     public static void main(String[] args) {
         int[] test = new int[]{123, 435, 678, 2343, 6547, 65, 867, 7, 3, 525, 3, 8, 585, 67};
+
+        //quickSort(test, 0, test.length - 1);
+        quickSort2(test, 0, test.length - 1);
+
         //bubbleSort(test);
-        selectSort(test);
+
+        //insertSort(test);
+
+        //selectSort(test);
         System.out.println(Arrays.toString(test));
+
+
     }
 
-    //从前往后 交换最大的放到后面
-    public static void bubbleSort(int[] arr) {
-        if (arr.length <= 1) {
+    //快排
+    public static void quickSort(int[] nums, int left, int right) {
+        if (left >= right) {
             return;
         }
-        for (int i = 0; i < arr.length - 1; i++) {
-            for (int j = 0; j < arr.length - 1 - i; j++) {
-                if (arr[j] > arr[j + 1]) {
-                    int temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
+        int l = left, r = right;
+        while (l < r) {
+            while (l < r && nums[r] >= nums[left]) {
+                r--;
+            }
+            while (l < r && nums[l] <= nums[left]) {
+                l++;
+            }
+            swap(nums, l, r);
+        }
+        swap(nums, l, left);
+        quickSort(nums, left, l - 1);
+        quickSort(nums, l + 1, right);
+    }
+
+    public static void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+
+    //冒泡排序
+    //相邻两两比较 
+    public static void bubbleSort(int[] nums) {
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = 1; j < nums.length - i; j++) {
+                if (nums[j] < nums[j - 1]) {
+                    swap(nums, j, j - 1);
                 }
             }
         }
     }
 
-    //每次选择最小放到前面 作为排好序的序列
-    public static void selectSort(int[] arr) {
-        if (arr.length <= 1) {
-            return;
-        }
-        for (int i = 0; i < arr.length - 1; i++) {
-            for (int j = i + 1; j < arr.length; j++) {
-                if (arr[i] > arr[j]) {
-                    int temp = arr[i];
-                    arr[i] = arr[j];
-                    arr[j] = temp;
-                }
+    //插入排序
+    //每次插入元素到有序的数组
+    public static void insertSort(int[] nums) {
+        for (int i = 1; i < nums.length; i++) {
+            for (int j = i; j > 0 && nums[j] < nums[j - 1]; j--) {
+                swap(nums, j, j - 1);
             }
         }
     }
+
+    //选择排序
+    //每次选择最小的元素加入到有序队列的最后
+    public static void selectSort(int[] nums) {
+        for (int i = 0; i < nums.length - 1; i++) {
+            int index_min = i;
+            for (int j = i; j < nums.length; j++) {
+                if (nums[index_min] > nums[j]) {
+                    index_min = j;
+                }
+            }
+            //交换 index_min 和 i
+            swap(nums, index_min, i);
+        }
+    }
+
+    //快排 另外一种思路
+    public static void quickSort2(int[] nums, int left, int right) {
+        if (left > right) {
+            return;
+        }
+        int i = left + 1, j = i;
+        while (j <= right) {
+            if (nums[left] > nums[j]) {
+                swap(nums, i, j);
+                i++;
+            }
+            j++;
+        }
+        swap(nums, left, i - 1);
+        quickSort2(nums, left, i - 2);
+        quickSort2(nums, i, right);
+
+    }
+
+    //快排单链表
+    private static void quickSort2(Node head) {
+        Node tail = head;
+        while (tail.next != null) {
+            tail = tail.next;
+        }
+        linkedListSort(head, tail);
+    }
+
+    private static void linkedListSort(Node low, Node high) {
+        if (low == null || low.next == null || low == high) {
+            return;
+        }
+        int privot = low.val;
+        Node i = low.next;
+        Node i_pre = low;
+        Node j = low.next;
+        while (j != high.next) {
+            if (j.val < privot) {
+                QuickSort.swapNode(i, j);
+                i_pre = i;
+                i = i.next;
+            }
+            j = j.next;
+        }
+        QuickSort.swapNode(low, i_pre);
+        linkedListSort(low, i_pre);
+        linkedListSort(i, high);
+    }
+
 }
 
