@@ -15,22 +15,33 @@ public class BubbleSort {
         System.out.println(Arrays.toString(test));
 
         //myBubbleSort(test);
-        bubbleSortMethod1(test);
+        myBubbleSort(test);
 
         System.out.println(Arrays.toString(test));
 
     }
 
-    private static void myBubbleSort(int[] numbers) {
-        if (numbers.length < 1)
+    private static void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+
+    private static void myBubbleSort(int[] nums) {
+        if (nums.length < 1)
             return;
-        for (int i = 0; i < numbers.length; i++) {
-            for (int j = 1; j < numbers.length - i; j++) {
-                if (numbers[j] > numbers[j - 1]) {
-                    int temp = numbers[j];
-                    numbers[j] = numbers[j - 1];
-                    numbers[j - 1] = temp;
+        for (int i = 0; i < nums.length; i++) {
+            //flag 作是否排好序的标记 作为优化
+            boolean flag = true;
+            for (int j = 1; j < nums.length - i; j++) {
+                //修改 < > 号进行降升序
+                if (nums[j] < nums[j - 1]) {
+                    flag = false;
+                    swap(nums, j, j - 1);
                 }
+            }
+            if (flag) {
+                break;
             }
         }
     }

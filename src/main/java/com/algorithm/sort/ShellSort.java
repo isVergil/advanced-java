@@ -40,10 +40,14 @@ public class ShellSort {
         //从 起点加步长 的那个元素开始插入排序
         for (int i = start + step; i < arr.length; i += step) {
             //把 arr[i] 添加进排好序的队列
-            for (int j = i; j - step >= 0 && (arr[j] < arr[j - step]); j -= step) {
-                int temp = arr[j];
-                arr[j] = arr[j - step];
-                arr[j - step] = temp;
+            for (int j = i; j - step >= 0; j -= step) {
+                if (arr[j] < arr[j - step]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j - step];
+                    arr[j - step] = temp;
+                } else {
+                    break;
+                }
             }
         }
     }
