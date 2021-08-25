@@ -1,4 +1,4 @@
-package com.thread.old;
+package com.juc.old;
 
 /**
  * @ClassName UseThread
