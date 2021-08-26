@@ -84,7 +84,7 @@ class MyData {
 
     public void addAtmic() {
         //atomicInteger++;
-        atomicInteger.getAndIncrement();
+        //atomicInteger.getAndIncrement();
     }
 
 
