@@ -15,7 +15,7 @@ public class LockDemo {
     public static void main(String[] args) {
         //不加参数是非公平锁
         //true为公平锁
-        Lock lock = new ReentrantLock(true);
-        ReentrantReadWriteLock
+        //Lock lock = new ReentrantLock(true);
+        //ReentrantReadWriteLock
     }
 }
