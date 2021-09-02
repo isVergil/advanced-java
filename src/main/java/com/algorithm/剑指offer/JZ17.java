@@ -21,6 +21,7 @@ public class JZ17 {
 
     }
 
+    //暴力解法
     public int[] printNumbers(int n) {
         int end = (int) Math.pow(10, n) - 1;
         int[] res = new int[end];
