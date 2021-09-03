@@ -1,5 +1,8 @@
 package com.algorithm.leetcode;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * @ClassName LC3
  * @Description TODO
@@ -28,6 +31,23 @@ public class LC3 {
             right++;
         }
         return maxLen;
+    }
+
+    //滑动窗口
+    public int lengthOfLongestSubstring1(String s) {
+        int length = s.length();
+        char[] ch = s.toCharArray();
+        int left = 0, right = 0, result = 0;
+        Set<Character> sets = new HashSet<>();
+        while (right < length) {
+            if (sets.contains(ch[right])) {
+                sets.remove(ch[left++]);
+            } else {
+                sets.add(ch[right++]);
+                result = Math.max(result, right - left);
+            }
+        }
+        return result;
     }
 
 }
