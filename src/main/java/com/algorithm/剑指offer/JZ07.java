@@ -18,33 +18,34 @@ public class JZ07 {
 
     }
 
-    //利用原理,先序遍历的第一个节点就是根。在中序遍历中通过根 区分哪些是左子树的，哪些是右子树的
-    //左右子树，递归
-    int preCopy[];
-    Map<Integer, Integer> map = new HashMap<>();
-
+    //preorder  1****
+    //inorder   **1**
+    //用 inorder 来划分 preorder 的左右子树
+    int[] pre;
+    Map<Integer, Integer> map;
 
     public TreeNode buildTree(int[] preorder, int[] inorder) {
-        this.preCopy = preorder;
-        for (int i = 0; i < preorder.length; i++) {
+        map = new HashMap<>();
+        pre = preorder;
+        for (int i = 0; i < inorder.length; i++) {
             map.put(inorder[i], i);
         }
-        return recur(0, 0, inorder.length);
+        return recur(0, 0, inorder.length - 1);
     }
 
-    //root  先序遍历的索引
-    //left  中序遍历的索引
-    //right 中序遍历的索引
-    private TreeNode recur(int root, int left, int right) {
+    //先序索引 root
+    //中序索引 left
+    //中序索引 right
+    public TreeNode recur(int root, int left, int right) {
         if (left > right) {
             return null;
         }
-        TreeNode treeNode = new TreeNode(preCopy[root]);
-        //划分preorder
-        int i = map.get(root);
-        treeNode.left = recur(root + 1, left, i - 1);
-        treeNode.right = recur(root + i - left + 1, i + 1, right);
-        return treeNode;
+        int rootPivot = map.get(pre[root]);
+        TreeNode rootTree = new TreeNode(pre[root]);
+        rootTree.left = recur(root + 1, left, rootPivot - 1);
+        //根节点索引 + 左子树长度 + 1
+        rootTree.right = recur(root + rootPivot - left + 1, rootPivot + 1, right);
+        return rootTree;
     }
 }
 

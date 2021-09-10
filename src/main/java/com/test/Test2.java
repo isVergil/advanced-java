@@ -22,9 +22,8 @@ public class Test2 {
 //        char[] temp = new char[128];
 //        System.out.println(temp[0]);
 
-        new Test2().combine(3,2);
+        new Test2().combine(3, 2);
 
-        
 
     }
 
@@ -34,18 +33,18 @@ public class Test2 {
     public List<List<Integer>> combine(int n, int k) {
         result = new ArrayList<List<Integer>>();
         path = new ArrayList<>();
-        backtracking(n,k,1);
+        backtracking(n, k, 1);
         return result;
     }
 
-    void backtracking(int n, int k, int startIndex){
-        if(path.size() == k){
+    void backtracking(int n, int k, int startIndex) {
+        if (path.size() == k) {
             result.add(new ArrayList<>(path));
             return;
         }
-        for(int i = startIndex; i <= n; i++ ) {
+        for (int i = startIndex; i <= n; i++) {
             path.add(i);
-            backtracking(n,k,i + 1);
+            backtracking(n, k, i + 1);
             path.remove(path.size() - 1);
         }
     }
@@ -60,3 +59,4 @@ public class Test2 {
 
 
 }
+

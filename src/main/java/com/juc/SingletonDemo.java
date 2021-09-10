@@ -85,7 +85,7 @@ class SingletonDemo2 {
 
 //DCL模式
 class SingletonDemo3 {
-    private static SingletonDemo3 instance = null;
+    private volatile static SingletonDemo3 instance = null;
 
     private SingletonDemo3() {
         System.out.println("DCL模式-构造方法");
