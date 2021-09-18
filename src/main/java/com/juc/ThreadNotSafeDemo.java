@@ -49,7 +49,7 @@ class Room {
         counter++;
     }
 
-    public void decrement() {
+    public synchronized void decrement() {
         counter--;
     }
 }

@@ -17,5 +17,7 @@ public class LockDemo {
         //true为公平锁
         //Lock lock = new ReentrantLock(true);
         //ReentrantReadWriteLock
+
+        String fasf = "fsf";
     }
 }

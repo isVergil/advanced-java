@@ -42,7 +42,8 @@ class TwoPhaseTermination {
                     log.debug("执行监控记录");  //情况2
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-                    //重新设置打断标记
+                    //打断sleep wait join 的线程会引发异常 并 清空标记
+                    //因此需要手动打断一次 这样下次循环时才会退出循环
                     Thread.currentThread().interrupt();
                 }
             }
@@ -54,6 +55,4 @@ class TwoPhaseTermination {
     public void stop() {
         monitor.interrupt();
     }
-
-
 }
