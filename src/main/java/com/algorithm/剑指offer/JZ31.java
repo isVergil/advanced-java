@@ -22,11 +22,7 @@ import java.util.Stack;
  */
 public class JZ31 {
 
-    public static void main(String[] args) {
-
-
-    }
-
+    //用真实的栈去模拟压栈 出栈
     public boolean validateStackSequences(int[] pushed, int[] popped) {
         Stack<Integer> stack = new Stack<>();
         int flag = 0;

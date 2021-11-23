@@ -1,6 +1,7 @@
 package com.algorithm.剑指offer;
 
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -24,7 +25,7 @@ public class JZ48 {
         int left = 0, right = 0, sLength = s.length();
         int maxLength = 0;
         Set<Character> set = new HashSet<>();
-        while (left < sLength && right < sLength) {
+        while (right < sLength) {
             if (set.contains(s.charAt(right))) {
                 set.remove(s.charAt(left++));
             } else {
@@ -33,5 +34,33 @@ public class JZ48 {
             }
         }
         return maxLength;
+    }
+
+    //法2  哈希表
+    public int lengthOfLongestSubstring2(String s) {
+        Map<Character, Integer> map = new HashMap();
+        int res = 0, tempRes = 0;
+        for (int i = 0; i < s.length(); i++) {
+            int j = map.getOrDefault(s.charAt(i), -1);
+            map.put(s.charAt(i), i);
+            tempRes = tempRes < i - j ? tempRes + 1 : i - j;
+            res = Math.max(tempRes, res);
+        }
+        return res;
+    }
+
+    //法3  类似 hash表
+    public int lengthOfLongestSubstring3(String s) {
+        int[] dic = new int[128];
+        int res = 0, curDic = 0;
+        for (int i = 0; i < s.length(); i++) {
+            //获取当前字符的旧位置
+            curDic = Math.max(dic[s.charAt(i)], curDic);
+            //计算最大长度
+            res = Math.max(res, i - curDic + 1);
+            //更新当前当前字符的最新位置
+            dic[s.charAt(i)] = i + 1;
+        }
+        return res;
     }
 }

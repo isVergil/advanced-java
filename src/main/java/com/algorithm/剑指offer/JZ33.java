@@ -24,7 +24,7 @@ public class JZ33 {
 
     }
 
-    //递归分治
+    //1、递归分治
     public boolean verifyPostorder(int[] postorder) {
         return recur(postorder, 0, postorder.length - 1);
     }
@@ -48,6 +48,8 @@ public class JZ33 {
         }
         return pivot == j && recur(postorder, i, mid - 1) && recur(postorder, mid, j - 1);
     }
+
+    //2、单调栈 https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/solution/mian-shi-ti-33-er-cha-sou-suo-shu-de-hou-xu-bian-6/
 
 
 

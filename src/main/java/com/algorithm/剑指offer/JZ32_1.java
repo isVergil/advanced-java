@@ -44,4 +44,14 @@ public class JZ32_1 {
         return result;
 
     }
+
+    class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode(int x) {
+            val = x;
+        }
+    }
 }

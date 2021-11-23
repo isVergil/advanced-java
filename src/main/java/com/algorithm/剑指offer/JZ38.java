@@ -17,7 +17,7 @@ import java.util.Set;
  */
 public class JZ38 {
 
-    //回溯法
+    //HashSet 去重
     Set<String> res = new HashSet<>();
     boolean[] visited;
 
@@ -31,12 +31,12 @@ public class JZ38 {
     // 回溯函数
     public void backtrack(char[] ch, StringBuilder sb) {
         // 终止条件
-        if (sb.length() == ch.length) {
+        if (sb.length() == ch.length) {    //注意 StringBuilder 没有 size() 方法
             res.add(sb.toString());
             return;
         }
-        // 选择列表
         for (int i = 0; i < ch.length; i++) {
+            //剪枝
             if (i > 0 && ch[i] == ch[i - 1] && !visited[i - 1]) {
                 continue;
             }
@@ -44,7 +44,7 @@ public class JZ38 {
                 sb.append(ch[i]);
                 visited[i] = true;
                 backtrack(ch, sb);
-                sb.deleteCharAt(sb.length() - 1);
+                sb.deleteCharAt(sb.length() - 1);   //注意 StringBuilder 的删除最后一个元素 deleteCharAt
                 visited[i] = false;
             }
         }

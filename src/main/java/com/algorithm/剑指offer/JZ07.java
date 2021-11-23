@@ -47,14 +47,39 @@ public class JZ07 {
         rootTree.right = recur(root + rootPivot - left + 1, rootPivot + 1, right);
         return rootTree;
     }
-}
 
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
+    class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
 
-    TreeNode(int x) {
-        val = x;
+        TreeNode(int x) {
+            val = x;
+        }
+    }
+
+    //法二 不需要定义全局变量
+    public TreeNode buildTree1(int[] preorder, int[] inorder) {
+        return recur1(preorder, 0, preorder.length - 1, inorder, 0, inorder.length - 1);
+    }
+
+    //重复传递拷贝值 会占用内存
+    public TreeNode recur1(int[] pre, int preleft, int preright, int[] in, int inleft, int inright) {
+        if (preright > preleft || inright > inleft) {
+            return null;
+        }
+        TreeNode root = new TreeNode(pre[preleft]);
+        //上限是 <= 因为上界可能会被取到
+        for (int i = inleft; i <= inright; i++) {
+            if (pre[preleft] == in[i]) {
+                int offset = i - inleft;
+                root.left = recur1(pre, preleft + 1, preleft + offset, in, inleft, inleft + offset);
+                root.right = recur1(pre, preleft + 1 + offset, preright, in, inleft + offset + 1, inright);
+                break;    //满足条件即break 后续的遍历无意义
+            }
+        }
+        return root;
     }
 }
+
+

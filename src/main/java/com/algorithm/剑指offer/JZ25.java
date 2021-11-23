@@ -47,7 +47,7 @@ public class JZ25 {
         return newHead.next;
     }
 
-    //法2 递归
+    //法2 递归  注意 l1 l2 == null 的条件判断
     public ListNode mergeTwoLists1(ListNode l1, ListNode l2) {
         if (l1 == null) {
             return l2;
@@ -62,6 +62,28 @@ public class JZ25 {
             l2.next = mergeTwoLists1(l1, l2.next);
             return l2;
         }
+    }
+
+    //同法一 自写
+    public ListNode mergeTwoLists3(ListNode l1, ListNode l2) {
+        if (l1 == null || l2 == null) {
+            return l1 == null ? l2 : l1;
+        }
+        ListNode newhead = new ListNode(0);
+        ListNode temp = newhead;
+        while (l1 != null && l2 != null) {
+            if (l1.val <= l2.val) {
+                temp.next = new ListNode(l1.val);
+                l1 = l1.next;
+            } else {
+                temp.next = new ListNode(l2.val);
+                l2 = l2.next;
+            }
+            temp = temp.next;
+        }
+        temp.next = (l1 != null ? l1 : l2);
+        return newhead.next;
+
     }
 
 }

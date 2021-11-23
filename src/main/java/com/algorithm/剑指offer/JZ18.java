@@ -57,4 +57,23 @@ public class JZ18 {
         return head;
     }
 
+    //test
+    public ListNode deleteNode3(ListNode head, int val) {
+        if (head == null) {
+            return null;
+        }
+        if (head.val == val) {
+            return head.next;
+        }
+        ListNode cur = head;
+        while (cur != null) {
+            if (cur.next.val == val) {
+                cur.next = cur.next.next;
+                return head;
+            }
+            cur = cur.next;
+        }
+        return head;
+    }
+
 }

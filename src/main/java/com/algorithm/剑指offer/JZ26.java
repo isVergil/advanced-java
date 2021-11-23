@@ -42,4 +42,13 @@ public class JZ26 {
         return iscontain(A.left, B.left) && iscontain(A.right, B.right);
     }
 
+    class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode(int x) {
+            val = x;
+        }
+    }
 }

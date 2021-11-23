@@ -49,6 +49,10 @@ public class JZ24 {
     }
 
     //3、递归
+    //1->2->3->4->5->null
+    //一环套一环 1套2套3套4套5
+    //到5 return  此时 newHead = 5
+    //此后每次向上结束递归 head是上一个元素 而 newHead 始终是5 不改变
     public ListNode reverseList3(ListNode head) {
         if (head == null || head.next == null) {
             return head;
