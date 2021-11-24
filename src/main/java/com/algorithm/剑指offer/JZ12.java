@@ -19,10 +19,6 @@ package com.algorithm.剑指offer;
  */
 public class JZ12 {
 
-    public static void main(String[] args) {
-
-    }
-
     //回溯 + DFS
     char[][] board;
     char[] word;
@@ -41,6 +37,7 @@ public class JZ12 {
     }
 
     boolean dfs(int i, int j, int k) {
+        //board[i][j] != word[k] 要放到最后 以防止数组越界
         if (i >= board.length || i < 0 || j >= board[0].length || j < 0 || board[i][j] != word[k]) {
             return false;
         }
