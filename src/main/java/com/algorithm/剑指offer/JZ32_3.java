@@ -1,9 +1,6 @@
 package com.algorithm.剑指offer;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * @ClassName JZ32_1
@@ -53,6 +50,37 @@ public class JZ32_3 {
             res.add(tmp);
         }
         return res;
+    }
+
+    public List<List<Integer>> levelOrder1(TreeNode root) {
+        List<List<Integer>> res = new ArrayList();
+        if (root == null) {
+            return res;
+        }
+        Queue<TreeNode> queue = new LinkedList();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            int flag = res.size();
+            List<Integer> tmp = new ArrayList();
+            while ((size--) > 0) {
+                TreeNode node = queue.poll();
+                tmp.add(node.val);
+                if (node.left != null) {
+                    queue.offer(node.left);
+                }
+                if (node.right != null) {
+                    queue.offer(node.right);
+                }
+            }
+            if ((flag & 1) != 0) {
+                Collections.reverse(tmp);
+            }
+            res.add(tmp);
+        }
+        return res;
+
+
     }
 
     class TreeNode {

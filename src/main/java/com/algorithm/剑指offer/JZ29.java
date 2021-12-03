@@ -16,11 +16,6 @@ package com.algorithm.剑指offer;
  */
 public class JZ29 {
 
-    public static void main(String[] args) {
-
-
-    }
-
     public int[] spiralOrder(int[][] matrix) {
         if (matrix.length == 0) {
             return new int[0];

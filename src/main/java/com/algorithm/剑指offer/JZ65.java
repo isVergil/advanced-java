@@ -21,9 +21,7 @@ public class JZ65 {
         if (b == 0) {
             return a;
         }
-        int newA = a ^ b;
-        int newB = (a & b) << 1;
-        return add(newA, newB);
+        return add(a ^ b, (a & b) << 1);
     }
 
     //2、非递归

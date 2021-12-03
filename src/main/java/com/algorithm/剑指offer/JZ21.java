@@ -49,4 +49,26 @@ public class JZ21 {
         return array;
     }
 
+    //保证各个奇偶数相对位置不变
+    public int[] reOrderArray(int[] array) {
+        if (array == null || array.length <= 1) {
+            return array;
+        }
+        int[] res = new int[array.length];
+        int left = 0, right = array.length - 1, len = array.length;
+        int newleft = 0, newright = right;
+        int index = 0;
+        while (left < len && right >= 0) {
+            if (array[left] % 2 != 0) {
+                res[newleft++] = array[left];
+            }
+            left++;
+            if (array[right] % 2 == 0) {
+                res[newright--] = array[right];
+            }
+            right--;
+        }
+        return res;
+    }
+
 }

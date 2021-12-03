@@ -46,4 +46,54 @@ public class JZ14_2 {
             return (int) (result * 6 % 1000000007);
         }
     }
+
+    //如何快速计算3的cnt次幂?
+    public long pow(long cnt) {
+        if (cnt == 0) {
+            return 1;
+        }
+        if (cnt == 1) {
+            return 3;
+        }
+        long part = pow(cnt / 2);
+        if (cnt % 2 == 0) {
+            return part * part % 998244353;
+        }
+        return 3 * part * part % 998244353;
+    }
+
+    //快速幂 将 乘积次数 从n次 降到lgn次
+    //https://zhuanlan.zhihu.com/p/95902286
+    //1、递归 快速幂
+    public long pow1(long a, long n) {
+        if (n == 0) {
+            return 1;
+        } else if (n % 2 == 1) {
+            return pow1(a, n - 1) * a;
+        } else {
+            long tmp = pow1(a, n / 2);
+            return tmp * tmp;
+        }
+    }
+
+    //2、非递归 快速幂
+    //幂 表示为 2 进制数，当前位为1 即 要 *= 当前位表示的十进制数
+    public long pow2(long a, long n) {
+        if (n == 0) {
+            return 1;
+        }
+        long res = 1;
+        if (n < 0) {
+            n = -n;
+            a = 1 / a;
+        }
+        while (n > 0) {
+            if ((n & 1) == 1) {
+                res *= a;
+            }
+            a *= a;
+            n >>= 1;
+        }
+        return res;
+    }
 }

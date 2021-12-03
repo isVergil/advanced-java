@@ -15,13 +15,13 @@ public class Bitwise {
     public void test() {
         int n = 100;
         int count = 0;
-        //1、求某一个数的二进制表示中1的个数
+        //1、求某一个数的二进制表示中1的个数 （剑指 Offer 15. 二进制中1的个数）
         while (n > 0) {
             count++;
             n &= (n - 1);
         }
         //2、判断一个数是否是2的方幂
-        if(n > 0 && ((n & (n - 1)) == 0 )){
+        if (n > 0 && ((n & (n - 1)) == 0)) {
             System.out.println("是2的方幂");
         }
         //3、不太常用
@@ -30,4 +30,9 @@ public class Bitwise {
     //求出二进制数最右边为 1 的位置
     //m = n & (~n + 1);
     //m = n - (n & (n - 1))
+
+    //求出 a 最低位的第一个1 同上
+    //    while((a & m) == 0){
+    //   m <<= 1;
+    //}
 }

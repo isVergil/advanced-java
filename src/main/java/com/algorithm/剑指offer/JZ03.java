@@ -13,8 +13,20 @@ import java.util.Set;
 https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/
  */
 public class JZ03 {
-    public static void main(String[] args) {
-
+    //自写
+    public int findRepeatNumber4(int[] nums) {
+        if (nums == null) {
+            return -1;
+        }
+        int[] numbers = new int[nums.length];
+        for (int num : nums) {
+            if (numbers[num] <= 1) {
+                numbers[num]++;
+            } else {
+                return num;
+            }
+        }
+        return -1;
     }
 
     //方法1 HashSet 不重复的性质
@@ -54,6 +66,26 @@ public class JZ03 {
             }
         }
         //循环退出都还没找到 返回 -1
+        return -1;
+    }
+
+    //方法2 简化代码  注意交换顺序
+    public int findRepeatNumber3(int[] nums) {
+        int temp;
+        for (int i = 0; i < nums.length; ) {
+            if (nums[i] == i) {
+                i++;
+                continue;
+            }
+            if (nums[i] == nums[nums[i]]) {
+                return nums[i];
+            }
+            //nums[nums[i]] 要作为 temp ，先后赋值 nums[nums[i]]、nums[i] ，顺序不能变
+            //因为先赋值 nums[i] ，nums[nums[i]] 的值就变了，因此顺序不能变
+            temp = nums[nums[i]];
+            nums[nums[i]] = nums[i];
+            nums[i] = temp;
+        }
         return -1;
     }
 }

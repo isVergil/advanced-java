@@ -58,4 +58,31 @@ public class LC_1574 {
         }
         return result;
     }
+
+
+    //第二种思路
+    public int findLengthOfShortestSubarray1(int[] arr) {
+        int len = arr.length;
+        int left = 1;
+        while (left < len && arr[left] >= arr[left - 1]) {
+            left++;
+        }
+        if (left == len) {
+            return 0;
+        }
+        int right = len - 1;
+        while (right > 0 && arr[right] >= arr[right - 1]) {
+            right--;
+        }
+        int result = right - left;
+        int i = 0, j = right;
+        while (i < left && j <= len - 1) {
+            if (arr[i] > arr[j]) {
+                j++;
+                result++;
+            }
+            i++;
+        }
+        return result;
+    }
 }

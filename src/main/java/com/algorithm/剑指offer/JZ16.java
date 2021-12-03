@@ -12,7 +12,7 @@ package com.algorithm.剑指offer;
 数值的整数次方
 
 实现 pow(x, n) ，即计算 x 的 n 次幂函数（即，xn）。不得使用库函数，同时不需要考虑大数问题。
-
+0^0 次方没有商定值， 一般无意义
 https://leetcode-cn.com/problems/shu-zhi-de-zheng-shu-ci-fang-lcof/
  */
 public class JZ16 {
@@ -42,6 +42,8 @@ public class JZ16 {
     //O(logn)
     public double myPow2(double x, int n) {
         if (x == 0) return 0;
+        //Java 代码中 int32 变量 n \in [-2147483648, 2147483647]n∈[−2147483648,2147483647] ，
+        // 因此当 n = -2147483648 时执行 n=−n 会因越界而赋值出错。解决方法是先将 n 存入 long 变量 b ，后面用 b 操作即可。
         long b = n;
         double res = 1.0;
         if (b < 0) {

@@ -54,11 +54,15 @@ public class JZ56_1 {
     //代码优化
     public int[] singleNumbers1(int[] nums) {
         int x = 0, y = 0, n = 0, m = 1;
-        for (int num : nums) n ^= num;
+        for (int num : nums) {
+            n ^= num;
+        }
         m = n & (~n + 1);
-        for (int num : nums)
-            if ((num & m) != 0)
+        for (int num : nums){
+            if ((num & m) != 0){
                 x ^= num;
+            }
+        }
         y = n ^ x;
         return new int[]{x, y};
     }

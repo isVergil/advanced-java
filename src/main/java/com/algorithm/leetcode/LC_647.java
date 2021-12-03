@@ -17,10 +17,11 @@ public class LC_647 {
         boolean[][] dp = new boolean[s.length()][s.length()];
         int res = 0;
         for (int j = 0; j < s.length(); j++) {
-            for (int i = 0; i < j; i++) {
+            for (int i = 0; i <= j; i++) {
                 //1、1个字符是回文
-                //2、3个字符 当头尾相等时也是回文
-                //3、大于三个字符 （头尾相等&&减去头尾是回文） 则是回文串
+                //2、2个字符 只要两个相等 也是回文串
+                //3、3个字符 当头尾相等时也是回文
+                //4、大于三个字符 （头尾相等&&减去头尾是回文） 则是回文串
                 if (s.charAt(i) == s.charAt(j) && ((j - i < 2) || dp[i + 1][j - 1])) {
                     dp[i][j] = true;
                     res++;

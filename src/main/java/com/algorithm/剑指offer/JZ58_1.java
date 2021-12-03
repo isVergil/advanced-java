@@ -10,6 +10,7 @@ import java.util.Stack;
  * @Version 1.0
  **/
 public class JZ58_1 {
+    //栈 先进后出
     public String reverseWords(String s) {
         //去除前后空格
         s = s.trim();
@@ -36,6 +37,7 @@ public class JZ58_1 {
 
     }
 
+    //倒序遍历
     public String reverseWords1(String s) {
         String[] strs = s.trim().split(" "); // 删除首尾空格，分割字符串
         StringBuilder res = new StringBuilder();
