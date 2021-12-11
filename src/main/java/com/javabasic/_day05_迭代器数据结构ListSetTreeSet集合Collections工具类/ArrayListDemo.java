@@ -1,9 +1,6 @@
 package com.javabasic._day05_迭代器数据结构ListSetTreeSet集合Collections工具类;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 /**
  * @ClassName ArrayListDemo
@@ -50,13 +47,21 @@ public class ArrayListDemo {
         list.add("1");
         list.add("2");
         list.add("3");
-        System.out.println(list.get(3));
-        System.out.println(list.remove(0));
-        list.set(0, "6");
-        System.out.println(list);
+//        System.out.println(list.get(3));
+//        System.out.println(list.remove(0));
+//        list.set(0, "6");
+//        System.out.println(list);
 
         //遍历
-        query(list);
+//        query(list);
+        for (int i = list.size() - 1; i >= 0; i--) {
+            String dadf = list.get(i);
+            if ("1".equals(dadf)) {
+                list.remove(dadf);
+            }
+
+        }
+        System.out.println(list);
 
 
     }
