@@ -15,19 +15,18 @@ https://leetcode-cn.com/problems/cong-wei-dao-tou-da-yin-lian-biao-lcof/
  */
 public class JZ06 {
     public static void main(String[] args) {
-        ListNode head = new ListNode(1);
-        ListNode node1 = new ListNode(89);
-        ListNode node2 = new ListNode(68);
-        ListNode node3 = new ListNode(134);
-        ListNode node4 = new ListNode(5);
-        head.next = node1;
-        node1.next = node2;
-        node2.next = node3;
-        node3.next = node4;
-        node4.next = null;
-        System.out.println(head);
-        new JZ06().reversePrint1(head);
-
+//        ListNode head = new ListNode(1);
+//        ListNode node1 = new ListNode(89);
+//        ListNode node2 = new ListNode(68);
+//        ListNode node3 = new ListNode(134);
+//        ListNode node4 = new ListNode(5);
+//        head.next = node1;
+//        node1.next = node2;
+//        node2.next = node3;
+//        node3.next = node4;
+//        node4.next = null;
+//        System.out.println(head);
+//        new JZ06().reversePrint1(head);
     }
 
     //方法1 遍历，用栈来存储结点，出栈即为新结点
@@ -96,25 +95,26 @@ public class JZ06 {
         j++;
     }
 
-}
+    class ListNode {
+        int val;
+        ListNode next;
 
-class ListNode {
-    int val;
-    ListNode next;
-
-    ListNode(int x) {
-        val = x;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(this.val);
-        ListNode temp = this.next;
-        while (temp != null) {
-            sb.append(" -> " + temp.val);
-            temp = temp.next;
+        ListNode(int x) {
+            val = x;
         }
-        return sb.toString();
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append(this.val);
+            ListNode temp = this.next;
+            while (temp != null) {
+                sb.append(" -> " + temp.val);
+                temp = temp.next;
+            }
+            return sb.toString();
+        }
     }
 }
+
+

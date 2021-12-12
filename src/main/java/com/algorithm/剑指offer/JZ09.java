@@ -13,37 +13,34 @@ import java.util.Stack;
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 public class JZ09 {
-    public static void main(String[] args) {
+    class CQueue {
 
-    }
-}
+        private Stack<Integer> stack1;
 
-class CQueue {
+        private Stack<Integer> stack2;
 
-    private Stack<Integer> stack1;
+        public CQueue() {
+            //stack1 入栈作为入队
+            stack1 = new Stack<>();
+            //stack2 出栈作为出队
+            stack2 = new Stack<>();
 
-    private Stack<Integer> stack2;
-
-    public CQueue() {
-        //stack1 入栈作为入队
-        stack1 = new Stack<>();
-        //stack2 出栈作为出队
-        stack2 = new Stack<>();
-    }
-
-    public void appendTail(int value) {
-        stack1.push(value);
-    }
-
-    public int deleteHead() {
-        if (stack1.isEmpty() && stack2.isEmpty()) {
-            return -1;
         }
-        if (stack2.isEmpty()) {
-            while (!stack1.isEmpty()) {
-                stack2.push(stack1.pop());
+
+        public void appendTail(int value) {
+            stack1.push(value);
+        }
+
+        public int deleteHead() {
+            if (stack1.isEmpty() && stack2.isEmpty()) {
+                return -1;
             }
+            if (stack2.isEmpty()) {
+                while (!stack1.isEmpty()) {
+                    stack2.push(stack1.pop());
+                }
+            }
+            return stack2.pop();
         }
-        return stack2.pop();
     }
 }

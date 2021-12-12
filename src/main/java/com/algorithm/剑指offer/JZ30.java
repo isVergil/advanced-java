@@ -38,6 +38,7 @@ public class JZ30 {
             }
         }
 
+        //此题如果用==将会无法通过 Integer的equals重写过，比较的是内部value的值， ==如果在[-128,127]会被cache缓存,超过这个范围则比较的是对象是否相同
         public void pop() {
             if (A.pop().equals(B.peek())) {
                 B.pop();
