@@ -1,6 +1,8 @@
 package com.algorithm.剑指offer;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * @ClassName JZ34
@@ -17,6 +19,7 @@ public class JZ36 {
 
     }
 
+    //法1
     Node head, prev;
 
     public Node treeToDoublyList(Node root) {
@@ -47,4 +50,28 @@ public class JZ36 {
         dfs(cur.right);
     }
 
+
+    //法2
+    List<Node> list = new ArrayList();
+
+    public Node Convert(Node pRootOfTree) {
+        if (pRootOfTree == null) {
+            return null;
+        }
+        dfs1(pRootOfTree);
+        for (int i = 1; i < list.size(); i++) {
+            list.get(i - 1).right = list.get(i);
+            list.get(i).left = list.get(i - 1);
+        }
+        return list.get(0);
+    }
+
+    void dfs1(Node root) {
+        if (root == null) {
+            return;
+        }
+        dfs(root.left);
+        list.add(new Node(root.val));
+        dfs(root.right);
+    }
 }

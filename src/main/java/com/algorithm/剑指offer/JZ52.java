@@ -18,4 +18,13 @@ public class JZ52 {
         }
         return tempA;
     }
+
+    class ListNode {
+        int val;
+        ListNode next = null;
+
+        ListNode(int val) {
+            this.val = val;
+        }
+    }
 }

@@ -7,6 +7,9 @@ package com.algorithm.leetcode;
  * @Date 2021/11/2 19:01
  * @Version 1.0
  **/
+/*
+82. 删除排序链表中的重复元素 II
+ */
 public class LC82_2 {
 
     //法1：一次遍历 制造一个temphead节点指向head

@@ -1,9 +1,6 @@
 package com.algorithm.剑指offer;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * @ClassName JZ33
@@ -26,6 +23,9 @@ public class JZ33 {
 
     //1、递归分治
     public boolean verifyPostorder(int[] postorder) {
+        if (postorder == null || postorder.length == 0) {
+            return false;
+        }
         return recur(postorder, 0, postorder.length - 1);
     }
 
@@ -50,7 +50,20 @@ public class JZ33 {
     }
 
     //2、单调栈 https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/solution/mian-shi-ti-33-er-cha-sou-suo-shu-de-hou-xu-bian-6/
+    boolean verifyPostorder1(int[] postorder) {
+        Stack<Integer> stack = new Stack<>();
+        int root = Integer.MAX_VALUE;
+        for (int i = postorder.length - 1; i >= 0; i--) {
+            if (postorder[i] > root) {
+                return false;
+            }
+            while (!stack.isEmpty() && stack.peek() > postorder[i]) {
+                root = stack.pop();
+            }
+            stack.push(postorder[i]);
+        }
+        return true;
 
-
+    }
 
 }

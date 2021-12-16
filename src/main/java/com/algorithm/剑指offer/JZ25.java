@@ -18,7 +18,7 @@ package com.algorithm.剑指offer;
 public class JZ25 {
 
     public static void main(String[] args) {
-        new JZ25().mergeTwoLists(new ListNode(1), new ListNode(2));
+        //new JZ25().mergeTwoLists(new ListNode(1), new ListNode(2));
     }
 
     //法1 伪头节点法
@@ -85,5 +85,15 @@ public class JZ25 {
         return newhead.next;
 
     }
+
+    class ListNode {
+        int val;
+        ListNode next = null;
+
+        ListNode(int val) {
+            this.val = val;
+        }
+    }
+
 
 }

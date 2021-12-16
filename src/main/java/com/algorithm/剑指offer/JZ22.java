@@ -30,10 +30,10 @@ public class JZ22 {
     //前后指针，former先走 k 步， 然后 latter 走，这样间隔就是 k
     public ListNode getKthFromEnd1(ListNode head, int k) {
         ListNode former = head, latter = head;
-        for(int i = 0; i < k; i++){
+        for (int i = 0; i < k; i++) {
             former = former.next;
         }
-        while(former != null) {
+        while (former != null) {
             former = former.next;
             latter = latter.next;
         }
@@ -43,14 +43,23 @@ public class JZ22 {
     // 引入 t 来代替第一个for循环 更加简洁  O(N)
     public ListNode getKthFromEnd2(ListNode head, int k) {
 
-         ListNode slow=head,fast=head;
-         int t = 0;
-         while(fast!=null){
-             if(t>=k) slow=slow.next;
-             fast = fast.next;
-             t++;
-         }
-         return slow;
+        ListNode slow = head, fast = head;
+        int t = 0;
+        while (fast != null) {
+            if (t >= k) slow = slow.next;
+            fast = fast.next;
+            t++;
+        }
+        return slow;
+    }
+
+    class ListNode {
+        int val;
+        ListNode next = null;
+
+        ListNode(int val) {
+            this.val = val;
+        }
     }
 
 }
