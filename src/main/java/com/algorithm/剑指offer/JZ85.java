@@ -39,4 +39,28 @@ public class JZ85 {
         return Arrays.copyOfRange(array, skipLeft, skipRight + 1);
     }
 
+    public int[] FindGreatestSumOfSubArray1(int[] array) {
+        int sum = array[0], num = array[0];
+        int tmpleft = 0, tmpright = 1;
+        int left = 0, right = 1;
+        for (int i = 1; i < array.length; i++) {
+            //num 相当于 dp[i]
+            if (array[i] > num + array[i]) {
+                num = array[i];
+                tmpleft = i;
+                tmpright = i + 1;
+            } else {
+                num = num + array[i];
+                tmpright++;
+            }
+
+            if (num >= sum) {
+                sum = num;
+                left = tmpleft;
+                right = tmpright;
+            }
+        }
+        return Arrays.copyOfRange(array, left, right);
+    }
+
 }

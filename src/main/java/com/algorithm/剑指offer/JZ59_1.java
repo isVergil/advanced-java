@@ -1,8 +1,6 @@
 package com.algorithm.剑指offer;
 
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.PriorityQueue;
+import java.util.*;
 
 /**
  * @ClassName JZ59_1
@@ -62,17 +60,45 @@ public class JZ59_1 {
         if (nums.length == 0) {
             return new int[0];
         }
+        //if (num == null || num.length == 0 || size == 0 || size > num.length) {
+        //    return res;
+        //}
+        //降序
         PriorityQueue<Integer> priorityQueue = new PriorityQueue<>((o1, o2) -> o2 - o1);
         int[] res = new int[nums.length - k + 1];
         //注意边界
         for (int i = 0; i < k - 1; i++) {
             priorityQueue.offer(nums[i]);
         }
-        for (int i = 0; i < res.length; i++) {
+        for (int i = 0; i < res.length - k + 1; i++) {
             priorityQueue.offer(nums[i + k - 1]);
             res[i] = priorityQueue.peek();
             //删除窗口外的元素
             priorityQueue.remove(nums[i]);
+        }
+        return res;
+    }
+
+    //单调队列
+    public ArrayList<Integer> maxInWindows(int [] num, int size) {
+        ArrayList<Integer> res = new ArrayList();
+        if (size == 0) {
+            return res;
+        }
+        ArrayDeque<Integer> deque = new ArrayDeque();
+        for (int i = 0; i < num.length; i++) {
+            //deque 不为空 且 deque尾存的下表元素 小于 遍历元素
+            //deque 尾出
+            while (!deque.isEmpty() && num[deque.peekLast()] <= num[i]) {
+                deque.pollLast();
+            }
+            if (!deque.isEmpty() && (i - size + 1 > deque.peekFirst())) {
+                deque.pollFirst();
+            }
+            deque.add(i);
+            if(i >= size - 1){
+                res.add(num[deque.peekFirst()]);
+            }
         }
         return res;
     }

@@ -1,6 +1,7 @@
 package com.algorithm.sort;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * @ClassName QuickSort
@@ -113,6 +114,7 @@ public class QuickSort {
         while (i < j) {
             while (i < j && arr[j] >= arr[l]) j--;
             while (i < j && arr[i] <= arr[l]) i++;
+            //Collections.swap(arr, l, r);   list 的交换
             swap(arr, i, j);
         }
         swap(arr, i, l);

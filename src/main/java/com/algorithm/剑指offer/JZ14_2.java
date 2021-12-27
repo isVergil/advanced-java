@@ -76,6 +76,19 @@ public class JZ14_2 {
         }
     }
 
+    //1.1
+    double power(double base, int exponent) {
+        if (exponent == 0) {
+            return 1.0;
+        }
+        double res = power(base, exponent / 2);
+        if ((exponent & 1) != 0) {
+            return res * res * base;
+        } else {
+            return res * res;
+        }
+    }
+
     //2、非递归 快速幂
     //幂 表示为 2 进制数，当前位为1 即 要 *= 当前位表示的十进制数
     public long pow2(long a, long n) {

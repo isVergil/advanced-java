@@ -7,6 +7,9 @@ package com.algorithm.剑指offer;
  * @Date 2021/12/2 10:18
  * @Version 1.0
  **/
+/*
+整数中1出现的次数（从1到n整数中1出现的次数）
+ */
 public class JZ43 {
     //3种情况
     //1、cur == 0 :  high * digit;

@@ -32,6 +32,7 @@ public class JZ30 {
         }
 
         public void push(int x) {
+            A.push(x);
             A.add(x);
             if (B.empty() || B.peek() >= x) {
                 B.add(x);

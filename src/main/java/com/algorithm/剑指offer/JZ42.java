@@ -34,4 +34,17 @@ public class JZ42 {
         return result;
     }
 
+    //动态规划 优化
+    public int FindGreatestSumOfSubArray(int[] array) {
+        int res = array[0];
+        for (int i = 1; i < array.length; i++) {
+            if (array[i - 1] >= 0) {
+                array[i] = array[i] + array[i - 1];
+            }
+            //array[i] = Math.max(array[i] + array[i - 1], array[i]);
+            res = Math.max(array[i], res);
+        }
+        return res;
+    }
+
 }
