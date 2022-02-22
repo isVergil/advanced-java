@@ -2,6 +2,7 @@ package com.algorithm.sort;
 
 import java.util.Arrays;
 
+//https://www.cnblogs.com/chengxiao/p/6194356.html
 public class MergeSort {
     public static void main(String[] args) {
         int[] test = {123, 435, 678, 2343, 6547, 65, 65, 867, 7, 3, 3, 525, 6532, 8, 585, 67};

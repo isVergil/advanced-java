@@ -2,6 +2,8 @@ package com.algorithm.剑指offer;
 
 
 import java.util.Stack;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * @ClassName JZ13
@@ -61,6 +63,28 @@ public class JZ27 {
             node.right = tmp;
         }
         return root;
+    }
+
+    //队列
+    public TreeNode Mirror(TreeNode pRoot) {
+        if (pRoot == null) {
+            return pRoot;
+        }
+        Queue<TreeNode> queue = new LinkedList();
+        queue.add(pRoot);
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            if (node.left != null) {
+                queue.add(node.left);
+            }
+            if (node.right != null) {
+                queue.add(node.right);
+            }
+            TreeNode tmp = node.left;
+            node.left = node.right;
+            node.right = tmp;
+        }
+        return pRoot;
     }
 
     class TreeNode {

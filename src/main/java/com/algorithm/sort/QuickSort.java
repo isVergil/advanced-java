@@ -11,6 +11,8 @@ import java.util.Collections;
  * @Version 1.0
  * 快速排序为什么要从右边开始
  * https://blog.csdn.net/luzhensmart/article/details/112505063?utm_term=%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BB%8E%E5%8F%B3%E8%BE%B9%E5%BC%80%E5%A7%8B&utm_medium=distribute.pc_aggpage_search_result.none-task-blog-2~all~sobaiduweb~default-2-112505063&spm=3001.4430
+ * 快速排序的几种写法
+ * https://blog.csdn.net/qq_36528114/article/details/78667034
  **/
 public class QuickSort {
     public static void main(String[] args) {
@@ -190,6 +192,18 @@ public class QuickSort {
         i.val = j.val;
         j.val = temp;
     }
+
+    //快排的非递归写法 用栈或者队列来代替递归
+    //快排的优化：
+    /*
+    1、三数取中法
+        上面的代码思想都是直接拿序列的最后一个值作为枢轴，如果最后这个值刚好是整段序列最大或者最小的值，那么这次划分就是没意义的。
+        所以当序列是正序或者逆序时，每次选到的枢轴都是没有起到划分的作用。快排的效率会极速退化。
+        所以可以每次在选枢轴时，在序列的第一，中间，最后三个值里面选一个中间值出来作为枢轴，保证每次划分接近均等。
+    2、直接插入
+        由于是递归程序，每一次递归都要开辟栈帧，当递归到序列里的值不是很多时，我们可以采用直接插入排序来完成，从而避免这些栈帧的消耗。
+     */
+
 
 }
 

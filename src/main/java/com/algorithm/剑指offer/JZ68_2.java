@@ -8,6 +8,9 @@ package com.algorithm.剑指offer;
  * @Version 1.0
  **/
 /*
+
+JZ86 在二叉树中找到两个节点的最近公共祖先
+
  二叉树的最近公共祖先
 
  注意是 普通二叉树

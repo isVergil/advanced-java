@@ -51,6 +51,7 @@ public class JZ08 {
     //法2 直接找
     //1 node 有右子树 则 node 的下一个就是 node 右子树的最左子节点
     //2 node 没有右子树 则向上找父节点，直到 当前节点 是其父节点的左节点则 该父节点为所求
+    //3 其他情况返回null 比如只有一个节点
     public TreeLinkNode GetNext1(TreeLinkNode pNode) {
         if(pNode == null){
             return null;
@@ -69,6 +70,7 @@ public class JZ08 {
             pNode = pNode.next;
         }
         return null;
+
     }
 
     public class TreeLinkNode {

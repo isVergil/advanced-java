@@ -32,4 +32,22 @@ public class SelectSort {
         }
     }
 
+    //选择
+    //稳定 平均 O(n^2)  最坏 O(n^2)  最好 O(n^2)
+    public void selectSort(int[] arr) {
+        if (arr == null || arr.length == 1) {
+            return;
+        }
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = i + 1; j < arr.length; j++) {
+                //升序
+                if (arr[j] < arr[i]) {
+                    int tmp = arr[j];
+                    arr[j] = arr[i];
+                    arr[i] = tmp;
+                }
+            }
+        }
+    }
+
 }

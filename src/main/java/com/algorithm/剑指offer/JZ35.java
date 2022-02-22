@@ -3,6 +3,7 @@ package com.algorithm.剑指offer;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName JZ34
@@ -23,7 +24,7 @@ public class JZ35 {
         if (head == null) {
             return null;
         }
-        HashMap<Node, Node> map = new HashMap<>();
+        Map<Node, Node> map = new HashMap<>();
         Node current = head;
         while (current != null) {
             map.put(current, new Node(current.val));

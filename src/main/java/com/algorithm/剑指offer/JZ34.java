@@ -1,5 +1,6 @@
 package com.algorithm.剑指offer;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -20,7 +21,12 @@ import java.util.List;
  */
 public class JZ34 {
     public static void main(String[] args) {
-
+        TreeNode root = new TreeNode(0);
+        root.left = new TreeNode(1);
+        root.right = new TreeNode(1);
+        JZ34 tmp = new JZ34();
+        tmp.FindPath(root, 1);
+        System.out.println(tmp.res1);
     }
 
     LinkedList<List<Integer>> res = new LinkedList<>();
@@ -46,14 +52,44 @@ public class JZ34 {
         path.removeLast();
     }
 
-    class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
+    ArrayList<ArrayList<Integer>> res1 = new ArrayList();
 
-        TreeNode(int x) {
-            val = x;
+    ArrayList<Integer> tmp = new ArrayList();
+
+    public ArrayList<ArrayList<Integer>> FindPath(TreeNode root, int expectNumber) {
+        if (root == null) {
+            return res1;
+        }
+        backtrack(root, expectNumber);
+        return res1;
+    }
+
+    void backtrack(TreeNode root, int val) {
+        if (root == null) {
+            return;
+        }
+        tmp.add(root.val);
+        val -= root.val;
+        if (val == 0 && root.left == null && root.right == null) {
+            res1.add(new ArrayList(tmp));
+            //return;
+        }
+        backtrack(root.left, val);
+        backtrack(root.right, val);
+        if (tmp.size() > 0) {
+            tmp.remove(tmp.size() - 1);
         }
     }
 
+
+}
+
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode(int x) {
+        val = x;
+    }
 }

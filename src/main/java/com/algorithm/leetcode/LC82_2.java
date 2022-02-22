@@ -9,6 +9,7 @@ package com.algorithm.leetcode;
  **/
 /*
 82. 删除排序链表中的重复元素 II
+JZ76 删除链表中重复的结点
  */
 public class LC82_2 {
 

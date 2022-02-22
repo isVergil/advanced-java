@@ -31,7 +31,7 @@ public class BubbleSort {
         if (nums.length < 1)
             return;
         for (int i = 0; i < nums.length; i++) {
-            //flag 作是否排好序的标记 作为优化
+            //flag 作是否排好序的标记 作为优化  没必要
             boolean flag = true;
             for (int j = 1; j < nums.length - i; j++) {
                 //修改 < > 号进行降升序
