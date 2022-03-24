@@ -8,7 +8,7 @@ package com.algorithm.LeetCode热题HOT100;
  * @Version 1.0
  **/
 /*
-两数相加
+两数相加   同 NC317 链表相加(一)
 给你两个 非空 的链表，表示两个非负的整数。它们每位数字都是按照 逆序 的方式存储的，并且每个节点只能存储 一位 数字。
 请你将两个数相加，并以相同形式返回一个表示和的链表。
 你可以假设除了数字 0 之外，这两个数都不会以 0 开头。
@@ -45,6 +45,78 @@ public class LC2 {
             head3 = head3.next;
         }
         return l1;
+    }
+
+    //同上   两数相加   同 NC317 链表相加(一)
+    public ListNode addTwoNumbers1(ListNode l1, ListNode l2) {
+        if (l1 == null || l2 == null) {
+            return l1 == null ? l2 : l1;
+        }
+        ListNode dummyHead = new ListNode(-1);
+        ListNode newHead = dummyHead;
+        int carry = 0;
+        while (l1 != null || l2 != null) {
+            int sum = carry;
+            if (l1 != null) {
+                sum += l1.val;
+                l1 = l1.next;
+            }
+            if (l2 != null) {
+                sum += l2.val;
+                l2 = l2.next;
+            }
+            carry = sum / 10;
+            dummyHead.next = new ListNode(sum % 10);
+            dummyHead = dummyHead.next;
+        }
+        if (carry > 0) {
+            dummyHead.next = new ListNode(carry);
+        }
+        return newHead.next;
+    }
+
+    //NC40 链表相加(二)
+    public ListNode addInList(ListNode head1, ListNode head2) {
+        if (head1 == null || head2 == null) {
+            return head1 == null ? head2 : head1;
+        }
+        head1 = reverse(head1);
+        head2 = reverse(head2);
+        ListNode head = new ListNode(-1);
+        ListNode headRet = head;
+        int tmp = 0;
+        while (head1 != null || head2 != null) {
+            int sum = tmp;
+            if (head1 != null) {
+                sum += head1.val;
+                head1 = head1.next;
+            }
+            if (head2 != null) {
+                sum += head2.val;
+                head2 = head2.next;
+            }
+            tmp = sum / 10;
+            head.next = new ListNode(sum % 10);
+            head = head.next;
+        }
+        if (tmp != 0) {
+            head.next = new ListNode(tmp);
+        }
+        return reverse(headRet.next);
+
+    }
+
+    public ListNode reverse(ListNode node) {
+        if (node == null) return null;
+        ListNode curr = null;
+        ListNode pre = node;
+        while (pre != null) {
+            ListNode tmp = pre.next;
+            pre.next = curr;
+            curr = pre;
+            pre = tmp;
+        }
+        return curr;
     }
 
 

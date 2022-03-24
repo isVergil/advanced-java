@@ -57,7 +57,7 @@ public class JZ59_1 {
 
     //法2  优先队列
     public int[] maxSlidingWindow2(int[] nums, int k) {
-        if (nums.length == 0) {
+        if (nums == null || nums.length == 0 || k <= 0) {
             return new int[0];
         }
         //if (num == null || num.length == 0 || size == 0 || size > num.length) {
@@ -80,9 +80,9 @@ public class JZ59_1 {
     }
 
     //单调队列
-    public ArrayList<Integer> maxInWindows(int [] num, int size) {
+    public ArrayList<Integer> maxInWindows(int[] num, int size) {
         ArrayList<Integer> res = new ArrayList();
-        if (size == 0) {
+        if (num == null || num.length == 0 || size <= 0) {
             return res;
         }
         ArrayDeque<Integer> deque = new ArrayDeque();
@@ -96,7 +96,7 @@ public class JZ59_1 {
                 deque.pollFirst();
             }
             deque.add(i);
-            if(i >= size - 1){
+            if (i >= size - 1) {
                 res.add(num[deque.peekFirst()]);
             }
         }

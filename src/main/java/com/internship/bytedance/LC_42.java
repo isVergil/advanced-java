@@ -56,6 +56,7 @@ public class LC_42 {
     }
 
     //法3 双指针 同上 只不过节约了空间
+    //如果left_max<right_max成立，那么它就知道自己能存多少水了。无论右边将来会不会出现更大的right_max，都不影响这个结果
     public int trap3(int[] height) {
         if (height == null || height.length < 3) {
             return 0;

@@ -55,4 +55,26 @@ public class JZ11 {
         return numbers[left];
     }
 
+    //方法3
+    public int minArray(int[] numbers) {
+        int start = 0;
+        int end = numbers.length - 1;
+        while (start != end) {
+            int mid = start + (end - start) / 2;
+            if (numbers[mid] > numbers[end]) start = mid + 1;
+            else if (numbers[mid] < numbers[end]) end = mid;
+            else return findMin(numbers, start, end);
+        }
+        return numbers[start];
+    }
+
+    //直接遍历找最小
+    public int findMin(int[] numbers, int start, int end) {
+        int result = numbers[start];
+        for (int i = start; i <= end; i++) {
+            if (numbers[i] < result) result = numbers[i];
+        }
+        return result;
+    }
+
 }
