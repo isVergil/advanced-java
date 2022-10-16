@@ -19,11 +19,11 @@ import java.util.stream.Stream;
  *      count：统计个数
  *         -- long count();
  *      filter : 过滤元素
- *         -- Stream<T> filter(Predicate<? super T> predicate)
+ *         -- StreamDemo<T> filter(Predicate<? super T> predicate)
  *      limit : 取前几个元素
  *      skip : 跳过前几个
  *      map （映射）: 加工方法：把原来的元素加工以后，重新放上去
- *          -- <R> Stream<R> map(Function<? super T, ? extends R> mapper);
+ *          -- <R> StreamDemo<R> map(Function<? super T, ? extends R> mapper);
  *      concat : 合并流。
  *
  *

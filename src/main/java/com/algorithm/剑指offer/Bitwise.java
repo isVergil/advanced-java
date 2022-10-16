@@ -8,6 +8,7 @@ package com.algorithm.剑指offer;
  * @Version 1.0
  **/
 //位运算总结
+//https://leetcode.cn/problems/hamming-distance/solution/yi-ming-ju-chi-by-leetcode-solution-u1w7/
 public class Bitwise {
 
     //n&(n-1)   3个作用
@@ -25,10 +26,13 @@ public class Bitwise {
             System.out.println("是2的方幂");
         }
         //3、不太常用
+        //Integer.bitCount() 源码
+        //int[] nusm = {1, 2};
+        //int[] fsf = nusm.clone()
     }
 
     //求出二进制数最右边为 1 的位置
-    //m = n & (~n + 1);
+    //m = n & (~n + 1);    (取反加1)
     //m = n - (n & (n - 1))
 
     //求出 a 最低位的第一个1 同上

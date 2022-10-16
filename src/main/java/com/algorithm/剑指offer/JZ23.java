@@ -12,6 +12,7 @@ import java.util.Set;
  **/
 /*
 链表中环的入口结点
+142. 环形链表 II
  */
 public class JZ23 {
 
@@ -27,6 +28,15 @@ public class JZ23 {
             }
         }
         return null;
+
+//        Set<ListNode> set = new HashSet();
+//        while (head != null) {
+//            if (!set.add(head)) {
+//                return head;
+//            }
+//            head = head.next;
+//        }
+//        return null;
     }
 
     //法2 快慢指针 + 公式推导

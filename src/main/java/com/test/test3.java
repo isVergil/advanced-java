@@ -1,6 +1,7 @@
 package com.test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -12,32 +13,41 @@ import java.util.List;
  **/
 public class test3 {
     public static void main(String[] args) {
-        new test3().permute(new int[]{1, 2, 3});
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        System.out.println(new test3().diameterOfBinaryTree(root));
     }
 
-    List<List<Integer>> result = new ArrayList<>();
-    List<Integer> path = new ArrayList<>();
+    int max = 0;
 
-    public List<List<Integer>> permute(int[] nums) {
-        boolean[] used = new boolean[nums.length];
-        backtracking(nums, used);
-        return result;
+    public int diameterOfBinaryTree(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        dfs(root);
+        return max;
     }
 
-    void backtracking(int[] nums, boolean[] used) {
-        if (path.size() == nums.length) {
-            result.add(new ArrayList<>(path));
-            return;
+    private int dfs(TreeNode root) {
+        if (root.left == null && root.right == null) {
+            return 0;
         }
-        for (int i = 0; i < nums.length; i++) {
-            if (used[i]) {
-                continue;
-            }
-            path.add(nums[i]);
-            used[i] = true;
-            backtracking(nums, used);
-            path.remove(path.size() - 1);
-            used[i] = false;
-        }
+        int leftSize = root.left == null ? 0 : dfs(root.left) + 1;
+        int rightSize = root.right == null ? 0 : dfs(root.right) + 1;
+        max = Math.max(max, leftSize + rightSize);
+        return Math.max(leftSize, rightSize);
+    }
+
+
+}
+
+class TreeNode {
+    TreeNode left;
+    TreeNode right;
+    int val;
+
+    TreeNode(int val) {
+        this.val = val;
     }
 }

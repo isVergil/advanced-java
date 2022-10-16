@@ -30,5 +30,19 @@ public class LC3 {
             }
         }
         return result;
+
+        //Set<Character> set = new HashSet();
+        //int res = 0;
+        //int left = 0, right = 0;
+        //while (right < s.length()) {
+        //    if (set.add(s.charAt(right))) {
+        //        right++;
+        //    } else {
+        //        set.remove(s.charAt(left));
+        //        left++;
+        //    }
+        //    res = Math.max(res, right - left);
+        //}
+        //return res;
     }
 }

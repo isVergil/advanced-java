@@ -2,12 +2,14 @@ package com.algorithm.sort;
 
 import java.util.Arrays;
 
+//归并排序
 //https://www.cnblogs.com/chengxiao/p/6194356.html
 public class MergeSort {
     public static void main(String[] args) {
         int[] test = {123, 435, 678, 2343, 6547, 65, 65, 867, 7, 3, 3, 525, 6532, 8, 585, 67};
         //mergeSort(test, 0, test.length - 1);
-        mergeSort(test);
+        //mergeSort(test);
+        myMergeSort(test, 0, test.length - 1);
         System.out.println(Arrays.toString(test));
     }
 
@@ -39,6 +41,7 @@ public class MergeSort {
                 tempNums[k++] = nums[j++];
             }
         }
+        //剩下的
         while (i <= mid) {
             tempNums[k++] = nums[i++];
         }
@@ -73,6 +76,39 @@ public class MergeSort {
             if (left < n && mid < n) {
                 merge(arr, left, mid, n - 1);
             }
+        }
+    }
+
+    //简化写法
+    static void myMergeSort(int[] nums, int left, int right) {
+        if (left >= right) {
+            return;
+        }
+        int mid = (left + right) >> 1;
+        mergeSort(nums, left, mid);
+        mergeSort(nums, mid + 1, right);
+        int[] tmp = new int[right - left + 1];
+        int idxL = left;
+        int idxR = mid + 1;
+        int idx = 0;
+        while (idxL <= mid && idxR <= right) {
+            if (nums[idxL] < nums[idxR]) {
+                tmp[idx++] = nums[idxL++];
+            } else {
+                tmp[idx++] = nums[idxR++];
+            }
+        }
+        //遍历 左边 剩下的
+        while (idxL <= mid) {
+            tmp[idx++] = nums[idxL++];
+        }
+        //遍历 右边 剩下的
+        while (idxR <= right) {
+            tmp[idx++] = nums[idxR++];
+        }
+        //有序数组赋值
+        for (int i = 0; i < tmp.length; i++) {
+            nums[i + left] = tmp[i];
         }
     }
 

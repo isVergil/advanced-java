@@ -36,19 +36,20 @@ public class InsertSort {
     }
 
     public static int[] insertSort1(int[] arr) {
-        if(arr == null || arr.length < 2)
+        if (arr == null || arr.length < 2)
             return arr;
         int n = arr.length;
+        // 总共需要n-1轮排序，因为第一个数是看作有序的
         for (int i = 1; i < n; i++) {
-            int temp = arr[i];
-            int k = i - 1;
-            while(k >= 0 && arr[k] > temp)
+            int temp = arr[i];  // 需要把待插入的数给保存起来，避免在移动的过程中被覆盖
+            int k = i - 1;      // 待插入数的前一个数的下标
+            while (k >= 0 && arr[k] > temp) {
+                // 前一个数往后移一个位置
+                arr[k + 1] = arr[k];
                 k--;
-            //腾出位置插进去,要插的位置是 k + 1;
-            for(int j = i ; j > k + 1; j--)
-                arr[j] = arr[j-1];
+            }
             //插进去
-            arr[k+1] = temp;
+            arr[k + 1] = temp;
         }
         return arr;
     }
@@ -92,4 +93,23 @@ public class InsertSort {
             }
         }
     }
+
+    //希尔排序通用写法
+    public static void myshellSort(int[] a) {
+        for (int gap = a.length / 2; gap > 0; gap = gap / 2) {
+            for (int i = gap; i < a.length; i++) {
+                int insertValue = a[i];//需要把待插入的数给保存起来
+                int insertIndex = i - gap;//待插入数的前一个数的下标
+                //待插入数小于前一个数，说明还没找到插入的位置，需要继续向前比较
+                while (insertIndex >= 0 && insertValue < a[insertIndex]) {
+                    //前一个数往后移一个位置
+                    a[insertIndex + gap] = a[insertIndex];
+                    insertIndex = insertIndex - gap;
+                }
+                //退出循环，说明找到待插入位置了
+                a[insertIndex + gap] = insertValue;
+            }
+        }
+    }
+
 }

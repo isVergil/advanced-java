@@ -39,24 +39,20 @@ public class CreateThread {
 
     public static void createThread1() {
         //第一种 是把线程和任务合并在了一起
-        Thread t = new Thread() {
-            @Override
-            public void run() {
-                log.debug("running");
-            }
-        };
+        Thread t = new Thread(() -> log.debug("running"));
         t.setName("t1");
         t.start();
     }
 
     public static void createThread2() {
         //第二种 是把线程和任务分开了，用 Runnable 更容易与线程池等高级 API 配合，用 Runnable 让任务类脱离了 Thread 继承体系，更灵活。
-        Runnable run = new Runnable() {
-            @Override
-            public void run() {
-                log.debug("running");
-            }
-        };
+        //Runnable run = new Runnable() {
+        //    @Override
+        //    public void run() {
+        //        log.debug("running");
+        //    }
+        //};
+        Runnable run = () -> log.debug("running");
         Thread t = new Thread(run);
         t.setName("t2");
         t.start();
@@ -90,5 +86,12 @@ public class CreateThread {
         thread.start();
         //等待 task 运行返回的结果
         log.debug("{}",task.get());
+    }
+}
+
+class MyThread extends Thread{
+    @Override
+    public void run() {
+        super.run();
     }
 }

@@ -138,5 +138,47 @@ public class Test {
         linkedListSort(i, high);
     }
 
+    //1、快慢指针拆分链表成两部分
+    //2、合并两个有序链表
+    public Node sortList(Node head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        //快慢指针拆分链表
+        Node slow = head, fast = head, prev = head;
+        while (fast != null && fast.next != null) {
+            prev = slow;
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        prev.next = null;
+        Node l1 = sortList(head);
+        Node l2 = sortList(slow);
+        return merge(l1, l2);
+    }
+
+    //合并两个有序链表
+    public Node merge(Node l1, Node l2) {
+        Node dummy = new Node(0);
+        Node head = dummy;
+        while (l1 != null && l2 != null) {
+            if (l1.val <= l2.val) {
+                dummy.next = l1;
+                l1 = l1.next;
+            } else {
+                dummy.next = l2;
+                l2 = l2.next;
+            }
+            dummy = dummy.next;
+        }
+        if (l1 == null) {
+            dummy.next = l2;
+        } else {
+            dummy.next = l1;
+        }
+        return head.next;
+
+    }
+
 }
 

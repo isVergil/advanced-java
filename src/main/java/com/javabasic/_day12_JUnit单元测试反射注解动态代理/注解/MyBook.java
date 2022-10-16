@@ -92,7 +92,7 @@ public class MyBook {
     @MyTest("test")
     @My
     public static void main(String[] args) {
-
+        System.out.println();
     }
 
     @My

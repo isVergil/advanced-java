@@ -1,6 +1,7 @@
 package com.internship.bytedance;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -97,5 +98,53 @@ public class NC20 {
             return false;
         }
         return true;
+    }
+
+
+    List<String> path = new LinkedList();
+
+    public List<String> restoreIpAddresses2(String s) {
+        dfs(0, s);
+        return res;
+    }
+
+    void dfs(int index, String s) {
+        if (index == s.length() && path.size() == 4) {
+            String tmp = "";
+            for (String ip : path) {
+                tmp += (ip + ".");
+            }
+            tmp.substring(0, tmp.length() - 1);
+            res.add(tmp);
+            return;
+        }
+        if (index > s.length() || path.size() > 4) {
+            return;
+        }
+        //0 - 9
+        if (s.charAt(index) >= '0' || s.charAt(index) <= '9') {
+            path.add(String.valueOf(s.charAt(index)));
+            dfs(index + 1, s);
+            path.remove(path.size() - 1);
+        }
+        //10 - 99
+        if (index <= s.length() - 2) {
+            if (s.charAt(index) == '0') {
+                return;
+            }
+            path.add(s.substring(index, index + 2));
+            dfs(index + 3, s);
+            path.remove(path.size() - 1);
+        }
+        //100 - 256
+        if (index <= s.length() - 3) {
+            if (s.charAt(index) == '0') {
+                return;
+            }
+            path.add(s.substring(index, index + 3));
+            dfs(index + 4, s);
+            path.remove(path.size() - 1);
+        }
+
     }
 }

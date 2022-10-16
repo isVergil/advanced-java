@@ -111,12 +111,14 @@ class LRUCache {
 
     public LRUCache(int capacity) {
         //最大容量（最大 2^30 10亿 自动扩容），装填因子（扩容机制），迭代顺序
+        //true时，表示按照访问顺序迭代；值为false时，表示按照插入顺序迭代
         map = new LinkedHashMap<>(capacity, 0.75f, true);
         this.cap = capacity;
     }
 
     //LinkedHashMap中重写了HashMap的get方法，不止会取出所索要的节点的值，而且会调整LinkedHashMap中内置的链表中该键所对应的节点的位置，将该节点置为链表的尾部。
     public int get(int key) {
+        //map.getOrDefault(key, -1);
         if (map.containsKey(key)) {
             return map.get(key);
         }
@@ -124,6 +126,7 @@ class LRUCache {
     }
 
     //尾部插入
+    //或者重写 removeEldestEntry 即每次调用put方法时都会调用 removeEldestEntry 来删除最久没访问的元素
     public void put(int key, int value) {
         map.put(key, value);
         if (map.size() > cap) {

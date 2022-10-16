@@ -6,16 +6,22 @@ import java.sql.Connection;
  * @author bill
  * @description todo
  * @updateTime 2021/6/27  21:34
- * 接口体现的是规范思想
- * --- 接口是更加彻底的抽象，接口中全部是抽象方法。
- * -
- * --- JDK 1.8之前，接口中只能是抽象方法和常量
- * -
- * --- 接口中的抽象方法可以省略  public abstract 不写，默认会加上
- * --- 接口中的常量 public static final 不写，默认会加上
- * --- 除此之外没有其他成分
+ *         接口体现的是规范思想
+ *         --- 接口是更加彻底的抽象，接口中全部是抽象方法。
+ *         -
+ *         --- JDK 1.8之前，接口中只能是抽象方法和常量
+ *         -
+ *         --- 接口中的抽象方法可以省略  public abstract 不写，默认会加上
+ *         --- 接口中的常量 public static final 不写，默认会加上
+ *         --- 除此之外没有其他成分
  */
-public interface InterfaceDemo {
+class InterfaceDemo {
+    public static void main(String[] args) {
+        System.out.println(InterfaceDemo1.SCHOOL_NAME);
+    }
+}
+
+interface InterfaceDemo1 {
     //1 抽象方法
     //接口中的抽象方法可以省略 public abstract 不写，默认会加上
     void run();

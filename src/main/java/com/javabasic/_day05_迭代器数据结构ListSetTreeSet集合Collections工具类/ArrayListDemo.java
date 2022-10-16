@@ -53,7 +53,7 @@ public class ArrayListDemo {
 //        System.out.println(list);
 
         //遍历
-//        query(list);
+        query(list);
         for (int i = list.size() - 1; i >= 0; i--) {
             String dadf = list.get(i);
             if ("1".equals(dadf)) {
@@ -62,6 +62,8 @@ public class ArrayListDemo {
 
         }
         System.out.println(list);
+
+        //list.addAll(List.of(1, 2, 3));
 
 
     }

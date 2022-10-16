@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 /**
  * @ClassName BinarySearch
- * @Description TODO
+ * @Description 二分查找
  * @Author bill
  * @Date 2021/7/7 21:28
  * @Version 1.0
@@ -36,5 +36,19 @@ public class BinarySearch {
         return -1;
     }
 
-
+    private int binarySearch(int[] arr, int target) {
+        int l = 0, r = arr.length - 1;
+        while (l <= r) {
+            //int mid = l + (r - l) / 2;
+            int mid = (l + r) >>> 1;  // 无符号右移运算
+            if (arr[mid] == target) {
+                return mid;
+            } else if (arr[mid] > target) {
+                r = mid - 1;
+            } else {
+                l = mid + 1;
+            }
+        }
+        return -1;
+    }
 }

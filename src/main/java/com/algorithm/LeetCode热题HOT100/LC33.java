@@ -36,4 +36,29 @@ public class LC33 {
         }
         return -1;
     }
+
+    public int search1(int[] nums, int target) {
+        int left = 0, len = nums.length, right = len - 1;
+        while (left <= right) {
+            int mid = (left + right) >> 1;
+            if (target == nums[mid]) {
+                return mid;
+            }
+            //left ~ mid 是单增序列
+            if (nums[left] <= nums[mid]) {
+                if (nums[left] <= target && target < nums[mid]) {
+                    right = mid - 1;
+                } else {
+                    left = mid + 1;
+                }
+            } else {   //left ~ mid 不是单增序列
+                if (nums[mid] < target && target <= nums[right]) {
+                    left = mid + 1;
+                } else {
+                    right = mid - 1;
+                }
+            }
+        }
+        return -1;
+    }
 }

@@ -59,6 +59,10 @@ class Teacher extends Employee {
     }
 }
 
+abstract  class Test1 extends  Employee{
+
+}
+
 abstract class Employee {
     //子类要完成这个功能，但是由自己重写完成
     //抽象方法：没有方法体，只有方法签名，必须用 abstract 修饰

@@ -9,7 +9,7 @@ import javax.lang.model.element.AnnotationMirror;
  * @Author bill
  * @Date 2021/6/27 22:47
  * @Version 1.0
- * JDK 1.8 开始之后接口新增的三个方法（了解即可）（Lambda Stream 函数式接口 中会用到）
+ * JDK 1.8 开始之后接口新增的三个方法（了解即可）（Lambda StreamDemo 函数式接口 中会用到）
  * -
  * -
  * -JDK 1.8 之前 接口只能是抽象方法和常量
